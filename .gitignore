@@ -1,0 +1,6 @@
+parqueadero-backend/node_modules/
+parqueadero-frontend/node_modules/
+parqueadero-backend/.env
+parqueadero-frontend/.env
+*.log
+dist/

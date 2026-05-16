@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    @apply bg-neutral-50 text-neutral-800 font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .slot-available { @apply bg-success-light border-2 border-success/30 text-success; }
+  .slot-occupied  { @apply bg-danger-light  border-2 border-danger/30  text-danger; }
+  .slot-maint     { @apply bg-neutral-100   border-2 border-neutral-300 text-neutral-400; }
+
+  .badge-moto { @apply bg-primary-light text-primary text-xs font-semibold px-2 py-0.5 rounded-full; }
+  .badge-carro { @apply bg-warning-light text-warning text-xs font-semibold px-2 py-0.5 rounded-full; }
+
+  .fade-in { animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+  .pulse-ring {
+    animation: pulseRing 1.6s ease-out infinite;
+  }
+  @keyframes pulseRing {
+    0%   { box-shadow: 0 0 0 0 rgba(220,38,38,.4); }
+    70%  { box-shadow: 0 0 0 10px rgba(220,38,38,0); }
+    100% { box-shadow: 0 0 0 0 rgba(220,38,38,0); }
+  }
+}
