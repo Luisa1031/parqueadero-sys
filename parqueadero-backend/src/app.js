@@ -8,11 +8,17 @@ const app = express();
 
 // ── Middlewares globales ──────────────────────────────────────
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    process.env.FRONTEND_URL,
-    /\.vercel\.app$/
-  ],
+  origin: (origin, callback) => {
+    const permitidos = [
+      'http://localhost:5173',
+      process.env.FRONTEND_URL,
+    ]
+    if (!origin || permitidos.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true)
+    } else {
+      callback(new Error('No permitido por CORS'))
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }))
