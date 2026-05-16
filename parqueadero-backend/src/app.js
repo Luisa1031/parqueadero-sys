@@ -8,13 +8,14 @@ const app = express();
 
 // ── Middlewares globales ──────────────────────────────────────
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
+  origin: [
+    'http://localhost:5173',
+    process.env.FRONTEND_URL,
+    /\.vercel\.app$/
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+}))
 // ── Rutas ─────────────────────────────────────────────────────
 app.use('/api', routes);
 
